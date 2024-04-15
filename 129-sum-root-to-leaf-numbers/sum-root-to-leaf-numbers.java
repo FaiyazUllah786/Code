@@ -14,20 +14,18 @@
  * }
  */
 class Solution {
-    int sum = 0;
     public int sumNumbers(TreeNode root) {
-        sum(root,"");
-        return sum;
+        return sum(root,0);
     }
 
-    public void sum(TreeNode root,String str){
-        if(root==null) return;
-        str+=String.valueOf(root.val);
+    public int sum(TreeNode root,int pathSum){
+        if(root==null) return 0;
+        pathSum = pathSum * 10 + root.val;
         if(root.left==null && root.right==null){
-            sum+=Integer.parseInt(str);
-            return;
+            return pathSum;
         }
-        sum(root.left,str);
-        sum(root.right,str);
+        int left = sum(root.left,pathSum);
+        int right = sum(root.right,pathSum);
+        return left + right;
     }
 }
