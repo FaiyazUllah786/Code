@@ -14,24 +14,26 @@
  * }
  */
 class Solution {
-    String ans = "zzzzzzzzzzzzzzzzzzzzzzzzzz";
+    String res="";
     public String smallestFromLeaf(TreeNode root) {
-        addString(root,"");
-        return ans;
+        traversal(root,new StringBuilder());
+        return res;
     }
-
-    public void addString(TreeNode root,String str){
-        if(root==null) return;
-        str+=(char)(97+root.val);
-        if(root.left==null && root.right==null){
-            StringBuilder sb = new StringBuilder(str);
-            String nodeStr = sb.reverse().toString();
-            if(nodeStr.compareTo(ans)<0){
-                ans=nodeStr;
-            }
+    public void traversal(TreeNode root,StringBuilder sb){
+        if(root==null){
             return;
         }
-        addString(root.left,str);
-        addString(root.right,str);
+        sb.insert(0,(char)(root.val+97));
+        if(root.left==null&&root.right==null){
+            if(res.equals("")){
+                res=sb.toString();
+            }
+            else{
+                res=res.compareTo(sb.toString())>0?sb.toString():res;
+            }
+        }
+        traversal(root.left,sb);
+        traversal(root.right,sb);
+        sb.deleteCharAt(0);
     }
 }
