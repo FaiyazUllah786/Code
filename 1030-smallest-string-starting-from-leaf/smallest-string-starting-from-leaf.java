@@ -14,11 +14,10 @@
  * }
  */
 class Solution {
-    ArrayList<String> ans = new ArrayList<>();
+    String ans = "zzzzzzzzzzzzzzzzzzzzzzzzzz";
     public String smallestFromLeaf(TreeNode root) {
         addString(root,"");
-        Collections.sort(ans);
-        return ans.get(0);
+        return ans;
     }
 
     public void addString(TreeNode root,String str){
@@ -27,7 +26,9 @@ class Solution {
         if(root.left==null && root.right==null){
             StringBuilder sb = new StringBuilder(str);
             String nodeStr = sb.reverse().toString();
-            ans.add(nodeStr);
+            if(nodeStr.compareTo(ans)<0){
+                ans=nodeStr;
+            }
             return;
         }
         addString(root.left,str);
