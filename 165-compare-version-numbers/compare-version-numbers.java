@@ -3,20 +3,20 @@ class Solution {
         List<Integer> v1 = new ArrayList<>();
         List<Integer> v2 = new ArrayList<>();
 
-        String temp = "";
+        StringBuilder temp = new StringBuilder();
         for(int i=0;i<ver1.length();i++){
-            if(ver1.charAt(i)!='.') temp+=ver1.charAt(i);
+            if(ver1.charAt(i)!='.') temp.append(ver1.charAt(i));
             if(ver1.charAt(i)=='.' || i==ver1.length()-1){
-                v1.add(Integer.valueOf(temp));
-                temp="";
+                v1.add(Integer.valueOf(temp.toString()));
+                temp.setLength(0);
             }
         }
-        temp = "";
+        temp.setLength(0);
         for(int i=0;i<ver2.length();i++){
-            if(ver2.charAt(i)!='.') temp+=ver2.charAt(i);
+            if(ver2.charAt(i)!='.') temp.append(ver2.charAt(i));
             if(ver2.charAt(i)=='.' || i==ver2.length()-1){
-                v2.add(Integer.valueOf(temp));
-                temp="";
+                v2.add(Integer.valueOf(temp.toString()));
+                temp.setLength(0);
             }
         }
         int ans = 0;
