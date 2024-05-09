@@ -1,20 +1,25 @@
 class Solution {
     public long maximumHappinessSum(int[] h, int k) {
-        long max=0;
-        int c=0,value=0;
-        Integer[] hArray = new Integer[h.length];
-        for(int i=0; i<h.length; i++){
-            hArray[i] = h[i];
+        long max = 0;
+        int c = 0, value = 0;
+        
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for (int num : h) {
+            pq.offer(num);
         }
-        Arrays.sort(hArray, Collections.reverseOrder());
-        for(int i=0;i<k;i++)
-        {
-            value = hArray[i]-i;
-            if(value>0)
-            {
+        
+        for (int i = 0; i < k; i++) {
+            int top = pq.poll();
+            value = top - c++;
+            if (value > 0) {
                 max += value;
             }
+            if (pq.isEmpty()) {
+                break;
+            }
         }
+        
         return max;
+
     }
 }
