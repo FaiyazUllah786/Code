@@ -2,10 +2,14 @@ class Solution {
     public long maximumHappinessSum(int[] h, int k) {
         long max=0;
         int c=0,value=0;
-        Arrays.sort(h);
-        for(int i=h.length-1;i>=h.length-k;i--)
+        Integer[] hArray = new Integer[h.length];
+        for(int i=0; i<h.length; i++){
+            hArray[i] = h[i];
+        }
+        Arrays.sort(hArray, Collections.reverseOrder());
+        for(int i=0;i<k;i++)
         {
-            value = h[i]-c++;
+            value = hArray[i]-i;
             if(value>0)
             {
                 max += value;
