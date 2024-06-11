@@ -1,24 +1,24 @@
 class Solution {
     public int[] relativeSortArray(int[] arr1, int[] arr2) {
-        Arrays.sort(arr1);
-        List<Integer> li = new ArrayList<>();
-        Set<Integer> set = new HashSet<>();
-        for(int i: arr2){
-            set.add(i);
-            for(int j=0;j<arr1.length;j++){
-                if(arr1[j]==i){
-                    li.add(i);
-                }
+       int[] cnt=new int[1001];
+        for(int i:arr1){
+            cnt[i]++;
+        }
+        int[] ans=new int[arr1.length];
+        int i=0;
+        for(int n:arr2){
+            while(cnt[n]>0){
+                ans[i]=n;
+                cnt[n]--;
+                i++;
             }
         }
-        for(int i=0;i<arr1.length;i++){
-           if(!set.contains(arr1[i])) li.add(arr1[i]);
-        }
-        
-        int[] ans = new int[li.size()];
-        int idx = 0;
-        for(int i:li){
-            ans[idx++] = i;
+        for(int j=0;j<cnt.length;j++){
+            while(cnt[j]>0){
+                ans[i]=j;
+                cnt[j]--;
+                i++;
+            }
         }
         return ans;
         
